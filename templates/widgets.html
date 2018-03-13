@@ -1,0 +1,17 @@
+
+{% macro about_me(full_name, job_title, works_for, articles) -%}
+<div class="row">
+  <div class="col-md-4">
+    <h2>{{ full_name }}</h2>
+    <div>{{ job_title }}</div>
+    <div>{{ works_for }}</div>
+  </div>
+  <div class="col-md-8">
+    <h1 id="biography">Biography</h1>
+    {% for article in articles if article.slug == 'biography' %}
+      <p>{{ article.category }} - {{ article.slug }}</p>
+      {{ article.content }}
+    {% endfor %}
+  </div>
+</div>
+{%- endmacro %}

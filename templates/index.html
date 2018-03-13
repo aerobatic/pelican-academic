@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% macro publications_section(title) -%}
+<section>
+    <h2>Publications</h2>
+    {% for article in articles_page.object_list %}
+      <li>{{ article.slug }}</li>
+    {% endfor %}
+</section>
+{%- endmacro %}
+
+{% block content %}
+  {% block index_precontent %}{% endblock %}
+  <div class="container">
+    {% block index_content %}
+    {% endblock %}
+  </div>
+{% endblock %}

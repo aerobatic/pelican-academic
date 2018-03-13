@@ -1,0 +1,34 @@
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  padding-top: 3.5rem;
+}
+
+.jumbotron {
+  color: #fff;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: intro 0.3s both;
+  animation-delay: 0s;
+  animation-delay: 0.25s;
+  background-color: #666;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bubbles-wide.jpg');
+}
+
+.container {
+  max-width: 960px;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
