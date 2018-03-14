@@ -32,3 +32,61 @@ body {
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+#profile .summary {
+  text-align: center;
+}
+
+#profile .portrait {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+}
+
+#profile h2.full-name {
+  font-size: 1.75em;
+  font-weight: 300;
+  color: #000000;
+  margin: 20px 0 10px 0;
+}
+
+#profile h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(0,0,0, 0.54);
+  margin: 0px 0 10px 0;
+}
+
+#profile ul.network-icon {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+#profile .network-icon a {
+  color: #0095eb;
+  text-decoration: none;
+  transition: color 0.6s ease;
+}
+
+#profile .network-icon i {
+  font-size: 2.5rem;
+}
+
+#profile .network-icon li {
+  margin-right: 10px;
+}
+
+#profile .network-icon li:last-of-type {
+  margin-right: 0;
+}
+
+#profile .network-icon li:hover {
+  transform: scale(1.2)
+}

@@ -1,17 +1,65 @@
 
-{% macro about_me(full_name, job_title, works_for, articles) -%}
-<div class="row">
-  <div class="col-md-4">
-    <h2>{{ full_name }}</h2>
-    <div>{{ job_title }}</div>
-    <div>{{ works_for }}</div>
+{% macro profile(full_name, job_title, works_for, articles, profile_photo, email_address, network_urls) -%}
+<div id="profile" class="row" itemprop="author" itemtype="http://schema.org/Person" itemref="person-email person-telephone person-address">
+  <div class="col-md-4 summary">
+    <div class="portrait" style="background-image: url({{profile_photo|default('/images/portrait.jpg')}})"></div>
+    <h2 class="full-name" itemprop="name">{{ full_name }}</h2>
+    <h3 class="job-title" itemprop="jobTitle">{{ job_title }}</h3>
+    <h3 class="works-for" itemprop="worksFor">{{ works_for }}</h3>
+
+    {% if network_urls is defined or email_address %}
+    <ul class="network-icon" aria-hidden="true">
+      {% if email_address %}
+      <li>
+        <a target="_blank" href="mailto:{{email_address}}" rel="noopener">
+          <i class="fa fa-envelope"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.twitter %}
+      <li>
+        <a target="_blank" href="{{network_urls.twitter}}" rel="noopener">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.google_scholar %}
+      <li>
+        <a target="_blank" href="{{network_urls.google_scholar}}" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.github %}
+      <li>
+        <a target="_blank" href="{{network_urls.github}}" rel="noopener">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8 col-xs-12">
     <h1 id="biography">Biography</h1>
-    {% for article in articles if article.slug == 'biography' %}
-      <p>{{ article.category }} - {{ article.slug }}</p>
+    {% for article in articles|selectattr("slug", "equalto", "biography") %}
       {{ article.content }}
     {% endfor %}
+
+    <div class="row">
+      <div class="col-sm-5">
+        {% for article in articles|selectattr("slug", "equalto", "interests") %}
+          <h3>Interests</h3>
+          {{ article.content }}
+        {% endfor %}
+      </div>
+      <div class="col-sm-5">
+        {% for article in articles|selectattr("slug", "equalto", "education") %}
+          <h3>Interests</h3>
+          {{ article.content }}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 {%- endmacro %}

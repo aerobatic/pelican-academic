@@ -1,5 +1,6 @@
 
 
+https://github.com/getpelican/pelican/commit/72756a5c0dba9307331499331357b6848898bc59
 
 ## Develop mode
 
