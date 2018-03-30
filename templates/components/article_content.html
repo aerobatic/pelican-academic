@@ -1,0 +1,56 @@
+{% from "components/article_share_links.html" import article_share_links %}
+
+{% macro article_content(article) -%}
+  <div class="article__container">
+    {% if article.featured_image %}
+      <div class="article-feature-img" style="background-image:url({{SITEURL}}/images/{{article.featured_image}})">
+        <div class="article-feature-img__darken"></div>
+        <div class="article-feature-img__container">
+          <h1 class="article-feature-img__title">{{article.title}}</h1>
+        </div>
+      </div>
+    {% endif %}
+    <div class="article__content">
+      {% if not article.featured_image %}
+        <h1 class="article__title">{{article.title}}</h1>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="article__authors">
+            {{ article.authors | join(', ')}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          {{ article_share_links(article) }}
+        </div>
+      </div>
+
+      {% if article.abstract is defined %}
+        <section class="article__abstract">
+          <h4>Abstract</h4>
+          <p class="article__abstract">
+            {{ article.abstract }}
+          </p>
+          <dl>
+            <dt>Type</dt>
+            <dd>Conference Paper</dd>
+            <dt>Publication</dt>
+            <dd>{{article.publication}}</dd>
+            <dt>Date</dt>
+            <dd>{{ article.date | datetimeformat("%b %Y") }}</dd>
+            <dt>Links</dt>
+            <dd>
+              <ul class="article__links">
+              {% for link in article.links %}
+                <li class="article__link-item"><a class="btn btn-outline-primary btn-xs" target="_blank" href="{{ link.url }}">{{ link.label }}</a></li>
+              {% endfor %}
+              </ul>
+            </dd>
+          </dl>
+        </section>
+      {% endif %}
+
+      {{ article.content }}
+    </div>
+  </div>
+{%- endmacro %}

@@ -1,0 +1,10 @@
+{% macro post_content(article) -%}
+  <div class="article__container">
+    <h2 class="article__title">{{article.title}}</h2>
+    <div class="article__authors">
+      {{ article.authors | join(', ')}}
+    </div>
+
+    {{ article.content }}
+  </div>
+{%- endmacro %}

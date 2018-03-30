@@ -1,0 +1,5 @@
+<!-- https://jsonld.com/person/ -->
+{% macro profile_metadata(metadata) -%}
+  {% do metadata.update({"@type":"Person", "@context": "http://schema.org"}) %}
+  <script type="application/ld+json">{{ metadata | tojson | safe }}</script>
+{%- endmacro %}

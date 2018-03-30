@@ -1,0 +1,10 @@
+{% macro interests(interests) -%}
+<div class="interests">
+    <h3>Interests</h3>
+    <ul>
+    {% for interest in interests %}
+      <li>{{ interest }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{%- endmacro %}

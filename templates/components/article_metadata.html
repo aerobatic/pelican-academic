@@ -1,0 +1,40 @@
+{% macro article_metadata(article) -%}
+  <title>{{ article.title }}</title>
+  {% if article.category == "publication" and article.abstract_short is defined %}
+    <meta name="description" content="{{article.abstract_short}}" />
+  {% elif article.description is defined %}
+    <meta name="description" content="{{article.description}}" />
+  {% endif %}
+
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+  {% endfor %}
+
+  {% if article.authors is defined %}
+    <meta name="author" content="{{article.authors | join(', ')}}" />
+  {% endif %}
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "{{ article.title }}",
+    {% if article.featured_image %}
+    "image": [
+      "{{ SITEURL }}/images/{{ article.featured_image }}"
+     ],
+    {% endif %}
+    "datePublished": {{ article.date }},
+    "dateModified": "2015-02-05T09:20:00+08:00",
+    "author": [
+      {% for author in article.authors %}
+      {
+        "@type": "Person",
+        "name": {{ author }}
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ],
+    "url": "{{ SITEURL }}{{ article.slug }}"
+  }
+  </script>
+{%- endmacro %}

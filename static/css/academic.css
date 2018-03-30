@@ -1,3 +1,4 @@
+/* Overall tag styles */
 html {
   font-size: 14px;
 }
@@ -11,6 +12,89 @@ body {
   padding-top: 3.5rem;
 }
 
+a {
+  color: #337ab7;
+}
+a:focus {
+  color: #23527c;
+}
+a:hover {
+  color: #0095eb;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+}
+
+div.math {
+  font-size: 1.5rem;
+}
+
+div.MathJax_Display {
+}
+
+/******************************************************************************/
+/* Boostrap refinements
+/******************************************************************************/
+
+nav.navbar {
+  height: 65px;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
+  border-color: #e7e7e7;
+  border-width: 0 0 1px;
+}
+
+nav.navbar a.navbar-brand {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+nav.navbar .navbar-nav li.nav-item {
+  margin-right: 12px;
+}
+
+nav.navbar .navbar-nav .nav-link {
+  font-weight: bold;
+  color: #34495e;
+}
+
+nav.navbar .navbar-nav .nav-link:hover,
+nav.navbar .navbar-nav .nav-link.active {
+  color: #0095eb;
+}
+
+nav.navbar .search-box {
+  position: relative;
+}
+
+nav.navbar .search-box input {
+  padding-right: 30px;
+}
+
+nav.navbar .search-box .fa {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  right: 0px;
+}
+
+footer.site-footer {
+  color: #899596;
+  margin: 4rem 0 0;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+footer p {
+  font-size: 1rem;
+  text-align: center;
+}
+
 .jumbotron {
   color: #fff;
   position: relative;
@@ -21,23 +105,172 @@ body {
   animation-delay: 0s;
   animation-delay: 0.25s;
   background-color: #666;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bubbles-wide.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/bubbles-wide.jpg");
 }
 
-.container {
-  max-width: 960px;
+.home-section {
+  background-color: rgb(255, 255, 255);
+  padding: 50px 0 50px 0;
+  animation: intro 0.3s both;
+  animation-delay: 0s;
+  animation-delay: 0.15s;
 }
 
-.border-top { border-top: 1px solid #e5e5e5; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.home-section:nth-of-type(2n) {
+  background-color: rgb(247, 247, 247);
+}
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+/******************************************************************************/
+/* Component styles
+/* Uses BEM convention - http://getbem.com/introduction/
+/******************************************************************************/
+.article__container {
+  max-width: 760px;
+  padding: 0;
+  margin: 70px auto 0 auto;
+  border: solid 1px silver;
+}
 
-#profile .summary {
+.article__content {
+  padding: 1.25rem;
+  background-color: #fff;
+}
+
+.article__abstract {
+  margin-top: 1rem;
+}
+
+.article__links,
+.article-card__links {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.article__link-item,
+.article-card__link-item {
+  display: inline;
+}
+
+.article__authors,
+.article-card__authors {
+  color: #3170a5;
+  font-style: italic;
+}
+
+.article__featured-img {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.article-card__img-link {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  padding: 1.25rem;
+  display: flex;
+  background: transparent;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.article__img-title {
+  margin: 2rem;
+  color: #fff;
+}
+
+.article-feature-img {
+  height: 200px;
+  background-size: cover;
+  position: relative;
+}
+
+/* Overlay to darken the feature image so the white title on top "pops" out */
+.article-feature-img__darken {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+.article-feature-img__title {
+  color: #fff;
+  text-shadow: 0 1px 0 black;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.article-feature-img__container {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  padding: 1.25rem;
+  display: flex;
+  background: transparent;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.article-feature-img__container:hover {
+  text-decoration: none;
+}
+
+.article-share-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article-share-links__item {
+  display: inline-flex;
+  margin-left: 0.5rem;
+}
+
+.article-share-links__link {
+  background-color: #b5c6ce;
+  display: block;
+  border-radius: 50%;
+  text-decoration: none !important;
+  margin: 0;
+}
+
+.article-share-links__link:hover {
+  background-color: #0095eb;
+}
+
+.article-share-links__icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  text-align: center;
+  transition: all 150ms ease-in-out;
+  color: #fff;
+}
+
+/************** profile component *************/
+.profile {
   text-align: center;
 }
 
-#profile .portrait {
+.profile__portrait {
   width: 200px;
   height: 200px;
   margin: 0 auto;
@@ -46,21 +279,22 @@ body {
   background-size: cover;
 }
 
-#profile h2.full-name {
+.profile__full-name {
   font-size: 1.75em;
   font-weight: 300;
   color: #000000;
   margin: 20px 0 10px 0;
 }
 
-#profile h3 {
+.profile__job-title,
+.profile__works-for {
   font-size: 1.2rem;
   font-weight: 300;
-  color: rgba(0,0,0, 0.54);
+  color: rgba(0, 0, 0, 0.54);
   margin: 0px 0 10px 0;
 }
 
-#profile ul.network-icon {
+.profile__network-list {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -69,24 +303,52 @@ body {
   margin-top: 30px;
 }
 
-#profile .network-icon a {
+.profile__network-link {
   color: #0095eb;
   text-decoration: none;
   transition: color 0.6s ease;
 }
 
-#profile .network-icon i {
+.profile__network-icon {
   font-size: 2.5rem;
 }
 
-#profile .network-icon li {
+.profile__network-item {
   margin-right: 10px;
 }
 
-#profile .network-icon li:last-of-type {
+.profile__network-item:last-of-type {
   margin-right: 0;
 }
 
-#profile .network-icon li:hover {
-  transform: scale(1.2)
+.profile__network-item:hover {
+  transform: scale(1.2);
+}
+
+/************** interests component ********************/
+.interests {
+}
+
+.interests__list {
+  margin-left: 0;
+}
+
+/************** education component ********************/
+.education {
+}
+
+.education__course {
+}
+
+.education__institution {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/************  article-card component ****************/
+.article-card {
+}
+
+.article-card__publication {
+  color: #090;
 }

@@ -1,0 +1,16 @@
+{% macro education(items) -%}
+<div class="education">
+    <h3>Education</h3>
+    <ul class="fa-ul">
+    {% for item in items %}
+      <li class="education__item">
+        <i class="fa-li fa fa-graduation-cap"></i>
+        <div>
+          <div class="education__course">{{ item[0] }}</div>
+          <div class="education__institution">{{ item[1] }}</div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{%- endmacro %}

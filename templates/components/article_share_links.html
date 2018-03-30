@@ -1,0 +1,21 @@
+{% macro article_share_links(article) -%}
+  {% if article.share_post and article.status != 'draft' %}
+    <ul class="article-share-links">
+      <li class="article-share-links__item">
+          <a class="article-share-links__link" href="{{article.share_post['twitter']}}" target="_blank" title="Share on Twitter">
+          <i class="fa fa-twitter article-share-links__icon"></i>
+        </a>
+      </li>
+      <li class="article-share-links__item">
+        <a class="article-share-links__link" href="{{article.share_post['linkedin']}}" target="_blank" title="Share on LinkedIn">
+          <i class="fa fa-linkedin article-share-links__icon"></i>
+        </a>
+      </li>
+      <li class="article-share-links__item">
+        <a class="article-share-links__link" href="{{article.share_post['email']}}" target="_blank" title="Share via Email">
+          <i class="fa fa-envelope article-share-links__icon"></i>
+        </a>
+      </li>
+    </ul>
+  {% endif %}
+{%- endmacro %}

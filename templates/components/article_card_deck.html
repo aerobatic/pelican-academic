@@ -1,0 +1,11 @@
+{% from "components/article_card.html" import article_card %}
+
+{% macro article_card_deck(articles) -%}
+  {% for article_batch in articles | batch(2, '<div></div>') %}
+    <div class="card-deck">
+      {% for article in article_batch %}
+        {{ article_card(article) }}
+      {% endfor %}
+    </div>
+  {% endfor %}
+{%- endmacro %}

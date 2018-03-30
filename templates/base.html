@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
   <head>
+      {% block head %}
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="theme" content="pelican-academic">
-      {% block title %}
-      <title>{{ SITENAME }}</title>
-      {% endblock %}
-      {% block description %}
-      <meta name="description" content="">
-      {% endblock %}
-      {% block author %}
-      <meta name="author" content="{{ AUTHOR }}">
-      {% endblock %}
 
       {% block favicon %}
-      <link rel="icon" type="image/png" href="theme/favicon.png">
-      <link rel="apple-touch-icon" type="image/png" href="theme/favicon-192.png">
+      <link rel="icon" type="image/png" href="{{ SITEURL }}/theme/favicon.png">
+      <link rel="apple-touch-icon" type="image/png" href="{{ SITEURL }}/theme/favicon-192.png">
       {% endblock %}
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.2/css/academicons.min.css" integrity="sha256-oGiTEL8yJwZpnRENOYNPR8e3gyozuRmWmedoB+uATdM=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous" />
-
-      {% if GOOGLE_FONT is defined %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{GOOGLE_FONT}}">
-      {% endif %}
 
       <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/academic.css" />
 
@@ -43,13 +31,49 @@
         <script async src="//www.google-analytics.com/analytics.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha256-vOtzmT0JTEyCHHVxkhEDvcjAXpCCxPxRPSRDWNU1k9s=" crossorigin="anonymous"></script>
       {% endif %}
+
+      {% endblock head %}
   </head>
 
-  <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71" class="{{ ACADEMIC_COLOR|default('light') }}">
-    {% include "includes/navbar.html" %}
+  <body id="top" data-spy="scroll" data-target="#navbar_main" data-offset="80">
+    <nav id="navbar_main" class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-light">
+        <a class="navbar-brand" href="{{ SITEURL }}/">{% block logo %}{{ SITENAME}}{% endblock %}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse main-menu" id="navbarNavDropdown">
+          {% block navbar %}{% endblock %}
+        </div>
+    </nav>
     <main role="main">
+      {% block banner %}{% endblock %}
       {% block content %}
       {% endblock %}
     </main>
+    <footer class="site-footer">
+      {% block footer %}
+        <div class="container">
+          <p class="powered-by">© 2018 · Powered by the
+            <a href="https://pelican-academic.aerobaticapp.com" target="_blank" rel="noopener">Academic theme</a> for
+            <a href="https://getpelican.com/" target="_blank" rel="noopener">Pelican</a>.
+
+            <span class="pull-right" aria-hidden="true">
+              <a href="#" id="back_to_top">
+                <span class="button_icon">
+                  <i class="fa fa-chevron-up fa-2x"></i>
+                </span>
+              </a>
+            </span>
+          </p>
+        </div>
+      {% endblock %}
+    </footer>
+
+    {% block body_end %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs=" crossorigin="anonymous"></script>
+    <script src="{{ SITEURL }}/theme/js/pelican-academic.js"></script>
+    {% endblock %}
   </body>
 </html>

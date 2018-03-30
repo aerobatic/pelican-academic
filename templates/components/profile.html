@@ -1,0 +1,41 @@
+{% macro profile(full_name, job_title, works_for, profile_photo, email_address, network_urls) -%}
+  <div class="profile">
+    <div class="profile__portrait" style="background-image: url({{profile_photo|default('/images/portrait.jpg')}})"></div>
+    <h2 class="profile__full-name">{{ full_name }}</h2>
+    <h3 class="profile__job-title">{{ job_title }}</h3>
+    <h3 class="profile__works-for">{{ works_for }}</h3>
+
+    {% if network_urls is defined or email_address %}
+    <ul class="profile__network-list" aria-hidden="true">
+      {% if email_address %}
+      <li class="profile__network-item">
+        <a class="profile__network-link" target="_blank" href="mailto:{{email_address}}" rel="noopener">
+          <i class="profile__network-icon fa fa-envelope"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.twitter %}
+      <li class="profile__network-item">
+        <a class="profile__network-link" target="_blank" href="{{network_urls.twitter}}" rel="noopener">
+          <i class="profile__network-icon fa fa-twitter"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.google_scholar %}
+      <li class="profile__network-item">
+        <a class="profile__network-link" target="_blank" href="{{network_urls.google_scholar}}" rel="noopener">
+          <i class="profile__network-icon ai ai-google-scholar"></i>
+        </a>
+      </li>
+      {% endif %}
+      {% if network_urls.github %}
+      <li class="profile__network-item">
+        <a class="profile__network-link" target="_blank" href="{{network_urls.github}}" rel="noopener">
+          <i class="profile__network-icon fa fa-github"></i>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+{%- endmacro %}
