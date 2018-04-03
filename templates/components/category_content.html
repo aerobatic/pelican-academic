@@ -1,0 +1,8 @@
+{% from "components/article_card_deck.html" import article_card_deck %}
+
+{% macro category_content(category, articles_page, category_headers, site_url) -%}
+  <div class="container category__container">
+    <h1>{{ category_headers[category.name] }}</h1>
+    {{ article_card_deck(articles_page.object_list, site_url) }}
+  </div>
+{%- endmacro %}

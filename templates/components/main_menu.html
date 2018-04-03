@@ -1,29 +1,38 @@
-{% macro menu_item_href(menu_item, page_name, categories, site_url) -%}
-  {% if menu_item.section and page_name == "index" %}#{{ menu_item.section }}
-  {% elif menu_item.category %}
-    {% for category, null in categories %}
-      {% if category.name == menu_item.category %}{{ site_url }}/{{ category.url }}{% endif %}
-    {% endfor %}
-  {% elif menu_item.section and page_name != "index" %}/#{{ menu_item.section }}
-  {% endif %}
-{%- endmacro %}
-
-{% macro main_menu(menu_items, page_name, categories, show_search, site_url) -%}
-  <div>{{ site_url }}</div>
-  <ul class="navbar-nav nav">
+{% macro main_menu(menu_items, page_name, categories, pages, category, article, show_search, site_url) -%}
+  <ul class="navbar-nav main-menu">
     {% for menu_item in menu_items %}
+      {% if menu_item.section and page_name == "index" %}
+        {% do menu_item.update({"href": "#" + menu_item.section}) %}
+      {% elif menu_item.category is defined %}
+        {% for category, null in categories %}
+          {% if category.name == menu_item.get('category', None) %}
+            {% do menu_item.update({"href": site_url + '/' + category.url }) %}          
+          {% endif %}
+        {% endfor %}
+      {% elif menu_item.section and page_name != "index" %}
+        {% do menu_item.update({"href": '/#' + menu_item.section }) %}
+      {% endif %}
+
+      {% if category is defined and menu_item.category == category.name %}
+        {% do menu_item.update({"active": True}) %}
+      {% endif %}
+
       <li class="nav-item main-menu__item">
-        <a class="nav-link main-menu__link" href="{{ menu_item_href(menu_item, page_name, categories, site_url) }}">{{ menu_item.label }}</a>
+        <a class="nav-link main-menu__link{% if menu_item.active %} active{% endif %}" href="{{ menu_item.href }}">{{ menu_item.label }}</a>
       </li>
     {% endfor %}
     {% if show_search %}
       <li>
-        <form class="form-inline my-2 my-lg-0">
-          <div class="search-box">
-            <i class="fa fa-search"></i>
-            <input type="text" class="form-control" placeholder="Search site" aria-label="Search site" aria-describedby="search-button">
-          </div>
-        </form>
+        {% for page in pages %}
+          {% if page.slug == "search" %}
+            <form class="form-inline my-2 my-lg-0" method="get" action="{{ site_url }}/{{ page.url }}">
+              <div class="search-box">
+                <i class="fa fa-search"></i>
+                <input type="text" name="q" class="form-control" placeholder="Search site" aria-label="Search site" aria-describedby="search-button">
+              </div>
+            </form>
+          {% endif %}
+        {% endfor %}
       </li>
     {% endif %}
   </ul>

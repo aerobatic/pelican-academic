@@ -1,10 +1,10 @@
 
-{% macro article_card(article) -%}
+{% macro article_card(article, site_url) -%}
   <article class="card article-card">
     {% if article.featured_image %}
-      <div class="card-img-top article-feature-img" style="background-image:url({{SITEURL}}/images/{{article.featured_image}})">
+      <div class="card-img-top article-feature-img" style="background-image:url({{site_url}}/{{article.featured_image}})">
         <div class="article-feature-img__darken"></div>
-        <a class="article-feature-img__container" href="{{ article.url }}">
+        <a class="article-feature-img__container" href="{{ site_url }}/{{ article.url }}">
           <h4 class="article-feature-img__title">{{article.title}}</h4>
         </a>
       </div>
@@ -12,10 +12,16 @@
     <div class="card-body">
       {% if not article.featured_image %}
         <h4 class="card-title">
-          <a href="{{ article.url }}">{{article.title}}</a>
+          <a href="{{ site_url }}/{{ article.url }}">{{article.title}}</a>
         </h4>
       {% endif %}
-      <p class="card-text">{{article.abstract_short}}</p>
+      <p class="card-text">
+        {% if article.abstract_short is defined %}
+        {{article.abstract_short}}
+        {% else %}
+        {{ article.summary }}
+        {% endif %}
+      </p>
       <div class="article-card__authors">{{ article.authors | join(', ')}}</div>
       {% if article.publication_short is defined %}
         <div class="article-card__publication">{{ article.publication_short }}</div>

@@ -9,7 +9,8 @@ html {
 }
 
 body {
-  padding-top: 3.5rem;
+  position: relative;
+  padding-top: 65px;
 }
 
 a {
@@ -25,6 +26,10 @@ a:hover {
 h1,
 h2 {
   font-weight: 300;
+}
+
+h3 {
+  font-weight: 400;
 }
 
 div.math {
@@ -137,10 +142,6 @@ footer p {
   background-color: #fff;
 }
 
-.article__abstract {
-  margin-top: 1rem;
-}
-
 .article__links,
 .article-card__links {
   margin: 0;
@@ -189,6 +190,7 @@ footer p {
 .article-feature-img {
   height: 200px;
   background-size: cover;
+  background-position: center center;
   position: relative;
 }
 
@@ -265,6 +267,11 @@ footer p {
   color: #fff;
 }
 
+.article__infobar {
+  margin-bottom: 0.8rem;
+  align-items: center;
+}
+
 /************** profile component *************/
 .profile {
   text-align: center;
@@ -325,6 +332,10 @@ footer p {
   transform: scale(1.2);
 }
 
+.category__container {
+  margin-top: 50px;
+}
+
 /************** interests component ********************/
 .interests {
 }
@@ -349,6 +360,16 @@ footer p {
 .article-card {
 }
 
+.article-card--empty {
+  border: none !important;
+}
+
 .article-card__publication {
   color: #090;
+}
+
+/* Used to center align youtube video embeds */
+.videobox {
+  display: block;
+  text-align: center;
 }

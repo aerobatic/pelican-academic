@@ -1,17 +1,36 @@
-{% macro article_metadata(article) -%}
-  <title>{{ article.title }}</title>
+{% macro article_metadata(article, site_url, twitter_username, site_name) -%}
+  <title>{{ article.title }} | {{site_name}}</title>
+  <meta name="og:title" content={{article.title}} />
+  <meta name="twitter:title" content="{{article.title}}">
+
   {% if article.category == "publication" and article.abstract_short is defined %}
-    <meta name="description" content="{{article.abstract_short}}" />
-  {% elif article.description is defined %}
+    <meta name="description" content="{{article.abstract_short | truncate(160)}}" />
+    <meta name="og:description" content="{{article.abstract_short}}" />
+    <meta name="twitter:description" content="{{article.abstract_short}}">
+  {% else %}
     <meta name="description" content="{{article.description}}" />
+    <meta name="og:description" content="{{article.description}}" />
+    <meta name="twitter:description" content="{{article.description}}">
   {% endif %}
 
+  {% if twitter_username is defined %}
+    <meta name="twitter:site" content="@{{ twitter_username }}">
+    <meta name="twitter:creator" content="@{{ twitter_username }}">
+  {% endif %}
+  
   {% for tag in article.tags %}
     <meta name="tags" content="{{tag}}" />
   {% endfor %}
 
   {% if article.authors is defined %}
     <meta name="author" content="{{article.authors | join(', ')}}" />
+  {% endif %}
+
+  <meta property="og:type" content="article" />
+  {% if article.featured_image %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{site_url}}/{{article.featured_image}}" />
+    <meta property="og:image" content="{{site_url}}/{{article.featured_image}}" />
   {% endif %}
 
   <script type="application/ld+json">
@@ -21,7 +40,7 @@
     "headline": "{{ article.title }}",
     {% if article.featured_image %}
     "image": [
-      "{{ SITEURL }}/images/{{ article.featured_image }}"
+      "{{ site_url }}/{{ article.featured_image }}"
      ],
     {% endif %}
     "datePublished": {{ article.date }},
@@ -34,7 +53,7 @@
       }{% if not loop.last %},{% endif %}
       {% endfor %}
     ],
-    "url": "{{ SITEURL }}{{ article.slug }}"
+    "url": "{{ site_url }}/{{ article.slug }}"
   }
   </script>
 {%- endmacro %}

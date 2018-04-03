@@ -1,9 +1,9 @@
 {% from "components/article_share_links.html" import article_share_links %}
 
-{% macro article_content(article) -%}
+{% macro article_content(article, site_url) -%}
   <div class="article__container">
     {% if article.featured_image %}
-      <div class="article-feature-img" style="background-image:url({{SITEURL}}/images/{{article.featured_image}})">
+      <div class="article-feature-img" style="background-image:url({{site_url}}/{{article.featured_image}})">
         <div class="article-feature-img__darken"></div>
         <div class="article-feature-img__container">
           <h1 class="article-feature-img__title">{{article.title}}</h1>
@@ -14,7 +14,7 @@
       {% if not article.featured_image %}
         <h1 class="article__title">{{article.title}}</h1>
       {% endif %}
-      <div class="row">
+      <div class="row article__infobar">
         <div class="col-md-6">
           <div class="article__authors">
             {{ article.authors | join(', ')}}

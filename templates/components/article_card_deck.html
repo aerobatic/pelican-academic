@@ -1,10 +1,14 @@
 {% from "components/article_card.html" import article_card %}
 
-{% macro article_card_deck(articles) -%}
-  {% for article_batch in articles | batch(2, '<div></div>') %}
+{% macro article_card_deck(articles, site_url) -%}
+  {% for article_batch in articles | batch(2, '-') %}
     <div class="card-deck">
       {% for article in article_batch %}
-        {{ article_card(article) }}
+        {% if article == "-" %}
+          <div class="card article-card--empty"></div>
+        {% else %}
+          {{ article_card(article, site_url) }}
+        {% endif %}
       {% endfor %}
     </div>
   {% endfor %}
