@@ -1,0 +1,10 @@
+{% macro content_block(block, articles, heading) -%}
+<div class="content-block">
+  {% if heading is defined %}
+    <h2>{{ heading }}</h2>
+  {% endif %}
+  {% for article in articles|selectattr("category", "equalto", "_block") | selectattr("slug", "equalto", block) %}
+    {{ article.content }}
+  {% endfor %}
+</div>
+{%- endmacro %}

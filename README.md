@@ -22,6 +22,6 @@ https://pixabay.com
 
 ### Metadata
 
-* JSON/LD metadata
+* JSON/LD metadata - testing tool https://search.google.com/structured-data/testing-tool/u/0/
 * [Open Graph](http://ogp.me/)
 * [Twitter Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup)

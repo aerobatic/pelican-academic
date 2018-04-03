@@ -43,8 +43,10 @@
       "{{ site_url }}/{{ article.featured_image }}"
      ],
     {% endif %}
-    "datePublished": {{ article.date }},
-    "dateModified": "2015-02-05T09:20:00+08:00",
+    "datePublished": "{{ article.date }}",
+    {% if article.modified %}
+    "dateModified": "{{ article.modified }}",
+    {% endif %}
     "author": [
       {% for author in article.authors %}
       {
@@ -53,7 +55,7 @@
       }{% if not loop.last %},{% endif %}
       {% endfor %}
     ],
-    "url": "{{ site_url }}/{{ article.slug }}"
+    "url": "{{ site_url }}/{{ article.url }}"
   }
   </script>
 {%- endmacro %}
