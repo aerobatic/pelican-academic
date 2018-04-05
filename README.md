@@ -12,6 +12,8 @@ https://developers.google.com/search/docs/guides/intro-structured-data
 https://sourcethemes.com/academic/
 https://sourcethemes.com/academic/docs
 https://themes.gohugo.io/theme/academic/publication/clothing-search/
+https://github.com/gcushen/hugo-academic/tree/master/exampleSite
+
 https://raw.githubusercontent.com/gcushen/hugo-academic/master/exampleSite/content/publication/clothing-search.md
 
 ### Article feature images

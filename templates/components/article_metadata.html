@@ -8,9 +8,9 @@
     <meta name="og:description" content="{{article.abstract_short}}" />
     <meta name="twitter:description" content="{{article.abstract_short}}">
   {% else %}
-    <meta name="description" content="{{article.description}}" />
-    <meta name="og:description" content="{{article.description}}" />
-    <meta name="twitter:description" content="{{article.description}}">
+    <meta name="description" content="{{ article.summary | truncate(160) }}" />
+    <meta name="og:description" content="{{ article.summary }}" />
+    <meta name="twitter:description" content="{{ article.summary }}">
   {% endif %}
 
   {% if twitter_username is defined %}

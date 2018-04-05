@@ -3,7 +3,7 @@
   {% if heading is defined %}
     <h2>{{ heading }}</h2>
   {% endif %}
-  {% for article in articles|selectattr("category", "equalto", "_block") | selectattr("slug", "equalto", block) %}
+  {% for article in articles|selectattr("category", "equalto", "_blocks") | selectattr("slug", "equalto", block) %}
     {{ article.content }}
   {% endfor %}
 </div>

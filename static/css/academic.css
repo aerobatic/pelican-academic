@@ -362,6 +362,7 @@ footer p {
 
 .article-card--empty {
   border: none !important;
+  background-color: transparent;
 }
 
 .article-card__publication {
