@@ -1,10 +1,23 @@
 (function($) {
   // Dynamically get responsive navigation bar offset.
-  let $navbar = $("#navbar_main");
-  let navbarOffset = $navbar.innerHeight();
+  var $navbar = $("#navbar_main");
+  var navbarOffset = $navbar.innerHeight();
+  var mobileMenu = $("#mobile_menu");
+  var topBarToggler = $("#top_bar_toggler");
+
+  function closeMobileMenu() {
+    mobileMenu.hide();
+    topBarToggler.find("i").toggleClass("fa-bars fa-window-close");
+  }
 
   // Smooth scrolling using jQuery easing
-  $('.main-menu__link[href*="#"]:not([href="#"])').click(function() {
+  $(".top_bar__menu-link, .mobile_menu__link").click(function() {
+    var href = $(this).attr("href");
+    var isSectionAnchor = href.startsWith("#") && href.length > 1;
+    if (!isSectionAnchor) return true;
+
+    closeMobileMenu();
+
     if (
       location.pathname.replace(/^\//, "") ==
         this.pathname.replace(/^\//, "") &&
@@ -24,10 +37,13 @@
     }
   });
 
-  // Closes responsive menu when a scroll trigger link is clicked
-  $(".main-menu__link").click(function() {
-    $(".navbar-collapse").collapse("hide");
+  topBarToggler.on("click", function() {
+    mobileMenu.animate({ height: "toggle" }, 300, function() {
+      topBarToggler.find("i").toggleClass("fa-bars fa-window-close");
+    });
   });
+
+  $("body").on("scroll", closeMobileMenu);
 
   // Activate scrollspy to add active class to navbar items on scroll
   if (PAGE_CONTEXT && PAGE_CONTEXT.pageName === "index") {

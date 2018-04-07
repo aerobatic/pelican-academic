@@ -14,13 +14,14 @@
       <link rel="apple-touch-icon" type="image/png" href="{{ SITEURL }}/theme/favicon-192.png">
       {% endblock %}
 
+      {% block stylesheets %}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.2/css/academicons.min.css" integrity="sha256-oGiTEL8yJwZpnRENOYNPR8e3gyozuRmWmedoB+uATdM=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous" />
-
       <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/academic.css" />
       <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pygment.css" />
+      {% endblock %}
 
       {% if GOOGLE_ANALYTICS is defined %}
         <script>
@@ -32,7 +33,6 @@
           ga('send', 'pageview');
         </script>
         <script async src="//www.google-analytics.com/analytics.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha256-vOtzmT0JTEyCHHVxkhEDvcjAXpCCxPxRPSRDWNU1k9s=" crossorigin="anonymous"></script>
       {% endif %}
 
       <script>
@@ -45,21 +45,15 @@
   </head>
 
   <body id="top">
-    <nav id="navbar_main" class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="{{ SITEURL }}/">{% block logo %}{{ SITENAME}}{% endblock %}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    {% block navbar %}
+    {% endblock %}
 
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        {% block navbar %}{% endblock %}
-      </div>
-    </nav>
     <main role="main">
       {% block banner %}{% endblock %}
       {% block content %}
       {% endblock %}
     </main>
+
     <footer class="site-footer">
       {% block footer %}
         <div class="container">

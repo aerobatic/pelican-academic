@@ -1,6 +1,6 @@
 /* Overall tag styles */
 html {
-  font-size: 14px;
+  font-size: 15px;
 }
 @media (min-width: 768px) {
   html {
@@ -43,51 +43,6 @@ div.MathJax_Display {
 /* Boostrap refinements
 /******************************************************************************/
 
-nav.navbar {
-  height: 65px;
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
-  border-color: #e7e7e7;
-  border-width: 0 0 1px;
-}
-
-nav.navbar a.navbar-brand {
-  font-weight: 600;
-  font-size: 1.4rem;
-}
-
-.navbar-collapse {
-  justify-content: flex-end;
-}
-
-nav.navbar .navbar-nav li.nav-item {
-  margin-right: 12px;
-}
-
-nav.navbar .navbar-nav .nav-link {
-  font-weight: bold;
-  color: #34495e;
-}
-
-nav.navbar .navbar-nav .nav-link:hover,
-nav.navbar .navbar-nav .nav-link.active {
-  color: #0095eb;
-}
-
-nav.navbar .search-box {
-  position: relative;
-}
-
-nav.navbar .search-box input {
-  padding-right: 30px;
-}
-
-nav.navbar .search-box .fa {
-  position: absolute;
-  padding: 10px;
-  pointer-events: none;
-  right: 0px;
-}
-
 footer.site-footer {
   color: #899596;
   margin: 4rem 0 0;
@@ -126,10 +81,132 @@ footer p {
   background-color: rgb(247, 247, 247);
 }
 
+@media (max-width: 768px) {
+  .home-section {
+    padding: 25px 0 25px 0;
+  }
+}
+
 /******************************************************************************/
 /* Component styles
 /* Uses BEM convention - http://getbem.com/introduction/
 /******************************************************************************/
+
+/* top_bar menu component */
+.top_bar {
+  height: 65px;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
+  border-color: #e7e7e7;
+  border-width: 0 0 1px;
+}
+
+.top_bar__logo {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #34495e;
+}
+
+.top_bar__logo--dark,
+.top_bar__logo--dark:hover {
+  color: #fff;
+}
+
+.top_bar__menu {
+  display: flex !important;
+  flex-grow: 1;
+  justify-content: flex-end;
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.top_bar__hamburger {
+  display: none;
+}
+
+.top_bar__hamburger {
+  display: inline-block;
+  font-size: 2rem;
+  color: #34495e;
+}
+
+.top_bar__hamburger--dark {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mobile_menu {
+  display: none;
+  background-color: rgb(247, 247, 247);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 65px;
+  width: 100%;
+  z-index: 10000;
+  position: fixed;
+}
+
+.mobile_menu--open {
+  display: block;
+}
+
+.mobile_menu__item {
+  text-align: center;
+  border-bottom: solid 1px #899596;
+}
+
+.mobile_menu__link {
+  display: block;
+  font-weight: bold;
+  color: #34495e;
+}
+
+@media (max-width: 768px) {
+  .top_bar__menu {
+    display: none !important;
+  }
+}
+
+.top_bar__menu-item {
+  margin-right: 12px;
+}
+
+.top_bar__menu-link {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.top_bar__menu-link:hover,
+.top_bar__menu-link.active {
+  color: #0095eb;
+}
+
+.top_bar__menu-link--dark {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.top_bar__menu-link--dark:hover,
+.top_bar__menu-link--dark.active {
+  color: #fff !important;
+}
+
+.top_bar__search-box {
+  position: relative;
+}
+
+.top_bar__search-input {
+  padding-right: 30px;
+}
+
+.top_bar__search-icon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  right: 0px;
+}
+
+/* article components */
 .article__container {
   max-width: 760px;
   padding: 0;
@@ -137,9 +214,26 @@ footer p {
   border: solid 1px silver;
 }
 
-.article__content {
+@media (max-width: 768px) {
+  .article__container {
+    border: none;
+    margin-top: 0;
+  }
+}
+
+.article__content,
+.article__pub_info,
+.article__abstract {
   padding: 1.25rem;
   background-color: #fff;
+}
+
+.article__abstract {
+  padding-top: 0;
+}
+
+.article__abstract p:last-child {
+  margin-bottom: 0;
 }
 
 .article__links,
@@ -270,6 +364,10 @@ footer p {
 .article__infobar {
   margin-bottom: 0.8rem;
   align-items: center;
+}
+
+.article__pub_info {
+  background-color: rgb(247, 247, 247);
 }
 
 /************** profile component *************/

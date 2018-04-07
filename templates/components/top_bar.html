@@ -1,0 +1,62 @@
+  {% macro top_bar(menu_items, page_name, categories, pages, category, article, show_search, site_url, site_name, background_color="#f8f9fa", dark_background=False) -%}
+
+    {% for menu_item in menu_items %}
+      {% if menu_item.section and page_name == "index" %}
+        {% do menu_item.update({"href": "#" + menu_item.section}) %}
+      {% elif menu_item.category is defined %}
+        {% for category, null in categories %}
+          {% if category.name == menu_item.get('category', None) %}
+            {% do menu_item.update({"href": site_url + '/' + category.url }) %}          
+          {% endif %}
+        {% endfor %}
+      {% elif menu_item.section and page_name != "index" %}
+        {% do menu_item.update({"href": '/#' + menu_item.section }) %}
+      {% endif %}
+
+      {% if category is defined and menu_item.category == category.name %}
+        {% do menu_item.update({"active": True}) %}
+      {% endif %}
+    {% endfor %}
+    
+  <nav id="navbar_main" style="background-color:{{ background_color }}" class="navbar fixed-top navbar-expand-lg top_bar">
+    <a class="navbar-brand top_bar__logo{% if dark_background %} top_bar__logo--dark{% endif %}" href="{{ site_url }}/">{{ site_name}}</a>
+      <button type="button" class="top_bar__hamburger{% if dark_background %} top_bar__hamburger--dark{% endif %}" id="top_bar_toggler" data-target="mobile_menu">
+        <i class="fa fa-bars"></i>
+      </button>
+
+    <!-- <button class="navbar-toggler top_bar__toggler" type="button" data-toggle="collapse" data-target="#navbar_dropdown" aria-controls="navbar_dropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
+    <div class="top_bar__menu" style="background-color:{{ background_color }}" id="navbar_dropdown">
+      <ul class="navbar-nav">
+        {% for menu_item in menu_items %}
+          <li class="nav-item top_bar__menu-item">
+            <a class="nav-link top_bar__menu-link{% if menu_item.active %} active{% endif %}{% if dark_background %} top_bar__menu-link--dark{% endif %}" href="{{ menu_item.href }}">{{ menu_item.label }}</a>
+          </li>
+        {% endfor %}
+        {% if show_search %}
+          <li>
+            {% for page in pages %}
+              {% if page.slug == "search" %}
+                <form class="form-inline my-2 my-lg-0" method="get" action="{{ site_url }}/{{ page.url }}">
+                  <div class="top_bar__search-box">
+                    <i class="fa fa-search top_bar__search-icon"></i>
+                    <input type="text" name="q" class="form-control top_bar__search-input" placeholder="Search site" aria-label="Search site" aria-describedby="search-button">
+                  </div>
+                </form>
+              {% endif %}
+            {% endfor %}
+          </li>
+        {% endif %}
+      </ul>      
+    </div>    
+  </nav>
+  <ul class="mobile_menu" id="mobile_menu">
+    {% for menu_item in menu_items %}
+      <li class="nav-item mobile_menu__item">
+        <a class="nav-link mobile_menu__link{% if menu_item.active %} active{% endif %}" href="{{ menu_item.href }}">{{ menu_item.label }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{%- endmacro %}
