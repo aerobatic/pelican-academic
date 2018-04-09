@@ -120,17 +120,16 @@ footer p {
   align-items: center;
 }
 
-.top_bar__hamburger {
+.top_bar__button {
   display: none;
 }
 
-.top_bar__hamburger {
-  display: inline-block;
+.top_bar__button {
   font-size: 2rem;
   color: #34495e;
 }
 
-.top_bar__hamburger--dark {
+.top_bar__button--dark {
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -147,10 +146,6 @@ footer p {
   position: fixed;
 }
 
-.mobile_menu--open {
-  display: block;
-}
-
 .mobile_menu__item {
   text-align: center;
   border-bottom: solid 1px #899596;
@@ -162,9 +157,16 @@ footer p {
   color: #34495e;
 }
 
+.mobile_search {
+  padding: 0.8rem 0;
+}
+
 @media (max-width: 768px) {
   .top_bar__menu {
     display: none !important;
+  }
+  .top_bar__button {
+    display: inline-block;
   }
 }
 
@@ -226,6 +228,10 @@ footer p {
 .article__abstract {
   padding: 1.25rem;
   background-color: #fff;
+}
+
+.article__pub_info dd:last-child {
+  margin-top: 0.5rem;
 }
 
 .article__abstract {
@@ -408,6 +414,12 @@ footer p {
   margin-top: 30px;
 }
 
+@media (max-width: 768px) {
+  .profile__network-list {
+    margin-top: 15px;
+  }
+}
+
 .profile__network-link {
   color: #0095eb;
   text-decoration: none;
@@ -432,6 +444,12 @@ footer p {
 
 .category__container {
   margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .category__container {
+    margin-top: 15px;
+  }
 }
 
 /************** interests component ********************/

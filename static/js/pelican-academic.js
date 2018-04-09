@@ -3,11 +3,17 @@
   var $navbar = $("#navbar_main");
   var navbarOffset = $navbar.innerHeight();
   var mobileMenu = $("#mobile_menu");
+  var mobileSearch = $("#mobile_search");
   var topBarToggler = $("#top_bar_toggler");
+  var topBarSearchIcon = $("#top_bar_search");
+  var topBarCloseIcon = $("#top_bar_close");
 
   function closeMobileMenu() {
     mobileMenu.hide();
-    topBarToggler.find("i").toggleClass("fa-bars fa-window-close");
+    mobileSearch.hide();
+    topBarSearchIcon.show();
+    topBarToggler.show();
+    topBarCloseIcon.hide();
   }
 
   // Smooth scrolling using jQuery easing
@@ -38,9 +44,32 @@
   });
 
   topBarToggler.on("click", function() {
-    mobileMenu.animate({ height: "toggle" }, 300, function() {
-      topBarToggler.find("i").toggleClass("fa-bars fa-window-close");
+    topBarToggler.hide();
+    topBarSearchIcon.hide();
+    topBarCloseIcon.show();
+    mobileMenu.animate({ height: "toggle" }, 300);
+  });
+
+  topBarSearchIcon.on("click", function() {
+    // Show the mobile search
+    topBarToggler.hide();
+    topBarSearchIcon.hide();
+    topBarCloseIcon.show();
+    mobileSearch.animate({ height: "toggle" }, 300, function() {
+      mobileSearch.find("input").focus();
     });
+  });
+
+  topBarCloseIcon.on("click", function() {
+    topBarSearchIcon.show();
+    topBarToggler.show();
+    topBarCloseIcon.hide();
+
+    if (mobileSearch.is(":visible")) {
+      mobileSearch.animate({ height: "toggle" }, 300);
+    } else {
+      mobileMenu.animate({ height: "toggle" }, 300);
+    }
   });
 
   $("body").on("scroll", closeMobileMenu);

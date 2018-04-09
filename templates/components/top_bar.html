@@ -20,13 +20,20 @@
     
   <nav id="navbar_main" style="background-color:{{ background_color }}" class="navbar fixed-top navbar-expand-lg top_bar">
     <a class="navbar-brand top_bar__logo{% if dark_background %} top_bar__logo--dark{% endif %}" href="{{ site_url }}/">{{ site_name}}</a>
-      <button type="button" class="top_bar__hamburger{% if dark_background %} top_bar__hamburger--dark{% endif %}" id="top_bar_toggler" data-target="mobile_menu">
+
+    <div>
+      {% if show_search %}
+      <button type="button" class="top_bar__button{% if dark_background %} top_bar__button--dark{% endif %}" id="top_bar_search">
+        <i class="fa fa-search"></i>
+      </button>
+      {% endif %}
+      <button type="button" class="top_bar__button{% if dark_background %} top_bar__button--dark{% endif %}" id="top_bar_toggler" data-target="mobile_menu">
         <i class="fa fa-bars"></i>
       </button>
-
-    <!-- <button class="navbar-toggler top_bar__toggler" type="button" data-toggle="collapse" data-target="#navbar_dropdown" aria-controls="navbar_dropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
+      <button type="button" style="display: none;" class="top_bar__button{% if dark_background %} top_bar__button--dark{% endif %}" id="top_bar_close">
+        <i class="fa fa-window-close"></i>
+      </button>
+    </div>
 
     <div class="top_bar__menu" style="background-color:{{ background_color }}" id="navbar_dropdown">
       <ul class="navbar-nav">
@@ -59,4 +66,19 @@
       </li>
     {% endfor %}
   </ul>
+
+  <div class="mobile_search" style="display:none;" id="mobile_search">
+    {% for page in pages %}
+      {% if page.slug == "search" %}
+        <div class="container">
+          <form class="form my-2 my-lg-0" method="get" action="{{ site_url }}/{{ page.url }}">
+            <div class="top_bar__search-box">
+              <i class="fa fa-search top_bar__search-icon"></i>
+              <input type="text" name="q" class="form-control top_bar__search-input" placeholder="Search site" aria-label="Search site" aria-describedby="search-button">
+            </div>
+          </form>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 {%- endmacro %}

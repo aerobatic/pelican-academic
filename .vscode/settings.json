@@ -1,0 +1,5 @@
+{
+  "python.pythonPath": "${workspaceFolder}/docs/bin/python",
+  "python.linting.enabled": false,
+  "editor.formatOnSave": false
+}

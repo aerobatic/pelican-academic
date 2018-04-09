@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = pelican-academic-docs
+SPHINXPROJ    = Pelican Academic Docs
 SOURCEDIR     = .
 BUILDDIR      = _build
 
