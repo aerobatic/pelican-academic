@@ -7,7 +7,6 @@ Pelican-Academic Docs
    :caption: Contents:
 
    quickstart
-   homepage
    content
    components
    customizations

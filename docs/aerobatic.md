@@ -1,1 +1,0 @@
-# Aerobatic specific options

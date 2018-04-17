@@ -1,3 +1,0 @@
-# Writing content
-
-## Math

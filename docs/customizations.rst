@@ -7,6 +7,9 @@ Header
 Footer
 ======
 
+Favicon
+=======
+
 Google Analytics
 ================
 

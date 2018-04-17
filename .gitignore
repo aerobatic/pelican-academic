@@ -1,5 +1,5 @@
-docs/bin
-docs/lib
 docs/_build
-docs/pip-selfcheck.json
-docs/pyvenv.cfg
+pip-selfcheck.json
+pyenv.cfg
+bin
+lib
