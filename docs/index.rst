@@ -9,6 +9,7 @@ Pelican-Academic Docs
    quickstart
    content
    components
+   metadata
    customizations
    aerobatic
 

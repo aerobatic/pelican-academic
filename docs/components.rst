@@ -35,14 +35,14 @@ Component library
 
   .. note::
 
-    Rather than use this component directly, it is more likely you will declare the ``article_card_deck`` component which uses this component internally.
+    Rather than use this component directly, it is more likely you will declare the ``article_card_deck`` which uses this component internally.
 
 .. py:function:: article_card_deck(articles, site_url)
 
   Renders a collection of articles using the `Bootstrap card deck component <https://getbootstrap.com/docs/4.0/components/card/#card-decks>`_. Each individual article is an instance of the ``article_card`` component.
 
-  :param list article: A list of Pelican `article objects <http://docs.getpelican.com/en/stable/themes.html#article>`_
-  :param object site_url: The url of the site, typically set to the Pelican ``SITEURL`` configuration setting
+  :param list articles: A list of Pelican `article objects <http://docs.getpelican.com/en/stable/themes.html#article>`_
+  :param string site_url: The url of the site, typically set to the Pelican ``SITEURL`` configuration setting
   
   **Example**:
 
@@ -51,6 +51,56 @@ Component library
     {% from "components/article_card_deck.html" import article_card_deck %}
 
     {{ article_card_deck(articles | isselected('posts'), site_url=SITEURL) }}
+
+.. py:function:: article_content(article, site_url)
+
+  Renders the contents of an article in the `article.html template <http://docs.getpelican.com/en/stable/themes.html#article-html>`_.
+
+  :param object article: The current `article <http://docs.getpelican.com/en/stable/themes.html#article>`_
+  :param string site_url: The url of the site, typically set to the Pelican ``SITEURL`` configuration setting
+
+  **Example:**
+
+  .. code-block:: jinja
+
+    {% from "components/article_content.html" import article_content %}
+
+    {{ article_content(article, site_url=SITEURL) }}
+
+.. py:function:: article_metadata(article, site_url)
+
+  Renders all of the following flavors of meta tags in the `<head>` of the `article.html template <http://docs.getpelican.com/en/stable/themes.html#article-html>`_:
+
+  - Subset of `JSON-LD article schema <http://schema.org/Article>`_
+  - `Twitter Summary Card <https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary>`_
+  - `OpenGraph <http://ogp.me/>`_
+  - HTML title and description, author, and tags ``meta`` tags
+  
+  These metatags assist with discovery of your site by search engines and social media platforms.
+
+  You can take advantage of `Jinja2 super blocks <http://jinja.pocoo.org/docs/2.10/templates/#super-blocks>`_ to append the metadata component to the ``head`` block while still maintaining the default content by calling ``super()``. 
+
+  :param object article: The current `article <http://docs.getpelican.com/en/stable/themes.html#article>`_
+  :param string site_url: The url of the site, typically set to the ``SITEURL`` configuration setting
+  :param string site_name: The name of the site, typically set to ``SITENAME`` configuration setting
+  :param twiter_username: Twitter username used for the `Twitter Card <https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started>`_ meta tags.
+
+  **Example:**
+
+  .. code-block:: jinja
+
+    {% from "components/article_metadata.html" import article_metadata %}
+
+    {% block head %}
+      {{ article_metadata(
+        article,
+        site_url=SITEURL,
+        site_name=SITENAME,
+        twitter_username=TWITTER_USERNAME
+      )}}
+
+      {{ super() }}
+    {% endblock %}
 
 .. py:function:: profile(full_name, [job_title], [works_for], [email_address], [network_urls])
 

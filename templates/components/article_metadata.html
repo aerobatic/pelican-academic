@@ -1,6 +1,6 @@
 {% macro article_metadata(article, site_url, twitter_username, site_name) -%}
   <title>{{ article.title }} | {{site_name}}</title>
-  <meta name="og:title" content={{article.title}} />
+  <meta name="og:title" content="{{article.title}}" />
   <meta name="twitter:title" content="{{article.title}}">
 
   {% if article.category == "publication" and article.abstract_short is defined %}
