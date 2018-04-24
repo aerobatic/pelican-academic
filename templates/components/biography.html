@@ -1,8 +1,0 @@
-{% macro biography(articles, slug) -%}
-<div class="biography-widget">
-  <h1 id="biography">Biography</h1>
-  {% for article in articles|selectattr("slug", "equalto", "biography") %}
-    {{ article.content }}
-  {% endfor %}
-</div>
-{%- endmacro %}

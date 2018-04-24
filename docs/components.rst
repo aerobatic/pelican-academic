@@ -18,6 +18,21 @@ In order to be used, each individual component must be explicitly imported into 
 Component library
 --------------------
 
+- `article_card <#article_card>`_
+- `article_card_deck <#article_card_deck>`_
+- `article_content <#article_content>`_
+- `article_metadata <#article_metadata>`_
+- `article_share_links <#article_share_links>`_
+- `back_to_top <#back_to_top>`_
+- `category_content <#category_content>`_
+- `content_block <#content_block>`_
+- `education <#education>`_
+- `interests <#interests>`_
+- `profile <#profile>`_
+- `profile_metadata <#profile_metadata>`_
+- `search_results <#search_results>`_
+- `top_bar <#top_bar>`_
+
 .. py:function:: article_card(article, site_url)
 
   Renders an individual article card consisting of an image header and text summary. The card is hyperlinked to the article details.
@@ -37,6 +52,12 @@ Component library
 
     Rather than use this component directly, it is more likely you will declare the ``article_card_deck`` which uses this component internally.
 
+  **Screenshot**:
+
+  .. image:: /images/article_card.png
+    :width: 500px
+    :align: center
+
 .. py:function:: article_card_deck(articles, site_url)
 
   Renders a collection of articles using the `Bootstrap card deck component <https://getbootstrap.com/docs/4.0/components/card/#card-decks>`_. Each individual article is an instance of the ``article_card`` component.
@@ -51,6 +72,13 @@ Component library
     {% from "components/article_card_deck.html" import article_card_deck %}
 
     {{ article_card_deck(articles | isselected('posts'), site_url=SITEURL) }}
+
+
+  **Screenshot**:
+
+  .. image:: /images/article_card_deck.png
+    :width: 800px
+    :align: center
 
 .. py:function:: article_content(article, site_url)
 
@@ -129,6 +157,10 @@ Component library
       }
     )}}
 
-  
+  **Screenshot**:
+
+  .. image:: /images/profile.png
+    :width: 300px
+    :align: center
 
 

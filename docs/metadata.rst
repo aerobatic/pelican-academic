@@ -3,29 +3,6 @@ Metadata
 
 Pelican Academic makes use of the latest structured metadata standards to make your site meaningful to non-humans including search engines, Twitter, and other friendly bots that can enhance the discoverability of your site.
 
-Article image
---------------
-
-Each article should be assigned a featured image. The goal is to re-purpose this image in a number of places:
-
-- In the image cap of the `article_card <components.html#article_card>`__ component.
-- At the top of the `article_content <components.html#article_content>`__ component.
-- As the canonical metadata image in the JSON-LD `Article<http://schema.org/Person>`_ schema.
-- The ``og:image`` open-graph canonical image
-- The Twitter summary card image
-
-The images should be placed your site's ``content/images`` directory and cropped to recommended size of **800x418** pixels, an aspect ratio of **1.91:1**. This is the recommended size for Twitter and will also render well on LinkedIn and other networks. The best images are abstract backgrounds rather than a photo with a definite subject (like a person). This avoids chopping off part of a head when cropped to render at different aspect ratios.
-
-The theme includes a number of science-oriented backgrounds you can use for your own articles. You can see them `here <https://github.com/aerobatic/pelican-academic/tree/master/static/images>`_.
-
-.. note::
-
-  `Pixabay <https://pixabay.com/>`_ is an excellent source of royalty free images that you can use without attribution.
-
-The featured image is declared in the article YAML metadata::
-
-  featured_image: theme/images/virus.jpg  
-
 JSON-LD
 ---------
 
@@ -74,11 +51,20 @@ Pelican Academic renders `JSON-LD <https://json-ld.org/metadata>`_ to the `<head
     </script>
 
 
-Twitter cards
+Twitter card
 --------------
 
-The `article_metadata <components.html#article_metadata>`__ component also emits the twitter card
+The `article_metadata <components.html#article_metadata>`__ component emits the twitter card summary so any tweets containing the url to your article will be enhanced with a title and featured image similiar to this:
 
 .. image:: /images/twitter-card-preview.png
   :width: 500px
   :align: center
+
+In the view-source of the `demo article <https://pelican-academic.aerobaticapp.com/publication/study-interpretation-ancient-runes>`_, you'll see the following output:
+
+.. code-block:: html
+
+    <meta name="twitter:site" content="@aerobaticapp">
+    <meta name="twitter:creator" content="@aerobaticapp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://pelican-academic.aerobaticapp.com/theme/images/virus.jpg" />
